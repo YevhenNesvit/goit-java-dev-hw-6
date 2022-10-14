@@ -7,22 +7,23 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <title>Invalid customer id format</title>
+        <title>Delete customer</title>
         <style>
-           .center {
-            text-align: center;
-            margin-top: 11%;
-           }
-          </style>
+            .center {
+                text-align: center;
+                margin-top: 11%;
+            }
+            .but {
+                margin-top: .2%;
+            }
+        </style>
     </head>
     <body>
         <c:import url="${contextPath}/WEB-INF/view/navigationBar.jsp"/>
-        <div class="center">
-          <h2><b>Invalid value. Please, use digits for customer_id</b></h2>
-          <p><a href="/createCustomerForm">Create customer</a></p>
-          <p><a href="/deleteCustomerForm">Delete customer</a></p>
-          <p><a href="/getCompanyByIdForm">Get company by id</a></p>
-          <p><a href="/updateCompanyForm">Update company</a></p>
-        </div>
+        <form method="post" class="center">
+            <label for="customerId"> Please, enter customer_id to delete: </label><br>
+            <input type="text" id="customerId" name="customerId"><br>
+            <button type="submit" class="but">Delete</button>
+        </form>
     </body>
 </html>
