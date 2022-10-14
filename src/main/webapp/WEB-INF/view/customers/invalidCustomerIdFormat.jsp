@@ -18,7 +18,7 @@
     <body>
         <c:import url="${contextPath}/WEB-INF/view/navigationBar.jsp"/>
         <div class="center">
-          <h2><b>Invalid value. Please, use digits for company_id</b></h2>
+          <h2><b>Invalid value. Please, use digits for customer_id</b></h2>
           <p><a href="/createCustomerForm">Create customer</a></p>
           <p><a href="/deleteCompanyForm">Delete company</a></p>
           <p><a href="/getCompanyByIdForm">Get company by id</a></p>
