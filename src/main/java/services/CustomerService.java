@@ -1,6 +1,6 @@
 package services;
 
-import config.ServiceConnection;
+import config.DatabaseManagerConnector;
 import converter.CustomerConverter;
 import model.dao.CustomerDao;
 import model.dto.CustomerDto;
@@ -13,17 +13,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerService {
-    ServiceConnection serviceConnection = new ServiceConnection();
     private static final String DELETE_CUSTOMER = "DELETE FROM customers where customer_id = ?";
     private static final String SELECT = "SELECT customer_id, name, country FROM customers";
     private static final String SELECT_BY_ID = "SELECT customer_id, name, country FROM customers WHERE customer_id = ?";
     private static final String INSERT = "INSERT INTO customers (customer_id, name, country) VALUES (?, ?, ?)";
     private static final String UPDATE_CUSTOMER = "UPDATE customers SET name = ?, country = ? WHERE customer_id = ?";
     CustomerConverter customerConverter = new CustomerConverter();
+    DatabaseManagerConnector connector;
+
+    public CustomerService(DatabaseManagerConnector connector) {
+        this.connector = connector;
+    }
 
     public List<CustomerDto> customerList() throws SQLException {
         ResultSet resultSet = null;
-        try (Connection connection = serviceConnection.connect().getConnection()) {
+        try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(SELECT);
 
             resultSet = statement.executeQuery();
@@ -44,7 +48,7 @@ public class CustomerService {
 
     public CustomerDto customerById(Integer id) throws SQLException {
         ResultSet resultSet = null;
-        try (Connection connection = serviceConnection.connect().getConnection()) {
+        try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(SELECT_BY_ID);
             statement.setInt(1, id);
 
@@ -63,7 +67,7 @@ public class CustomerService {
     }
 
     public void updateCustomer(String name, String country, Integer id) throws SQLException {
-        try (Connection connection = serviceConnection.connect().getConnection()) {
+        try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(UPDATE_CUSTOMER);
             statement.setString(1, name);
             statement.setString(2, country);
@@ -77,7 +81,7 @@ public class CustomerService {
 
     public void deleteCustomer(Integer id) throws SQLException {
 
-        try (Connection connection = serviceConnection.connect().getConnection()) {
+        try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(DELETE_CUSTOMER);
             statement.setInt(1, id);
 
@@ -89,7 +93,7 @@ public class CustomerService {
 
     public void createCustomer(Integer customerId, String name, String country) throws SQLException {
 
-        try (Connection connection = serviceConnection.connect().getConnection()) {
+        try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(INSERT);
             statement.setInt(1, customerId);
             statement.setString(2, name);

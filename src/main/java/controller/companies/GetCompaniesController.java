@@ -1,4 +1,4 @@
-package controller;
+package controller.companies;
 
 import config.ServiceConnection;
 import model.dto.CompanyDto;

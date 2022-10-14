@@ -1,4 +1,4 @@
-package controller;
+package controller.companies;
 
 import config.ServiceConnection;
 import services.CompanyService;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/deleteCompanyForm")
-public class DeleteCompanyFormController extends HttpServlet {
+@WebServlet(urlPatterns = "/updateCompanyForm")
+public class UpdateCompanyFormController extends HttpServlet {
     CompanyService companyService;
 
     @Override
@@ -23,7 +23,7 @@ public class DeleteCompanyFormController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/view/companies/deleteCompanyForm.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/view/companies/updateCompanyForm.jsp").forward(req, resp);
     }
 
     @Override
@@ -32,9 +32,11 @@ public class DeleteCompanyFormController extends HttpServlet {
 
         try {
             Integer companyId = Integer.parseInt(req.getParameter("companyId"));
+            String name = req.getParameter("companyName");
+            String country = req.getParameter("country");
             if (checkCompanies.IsCompanyIdExists(companyId)) {
-                companyService.deleteCompany(companyId);
-                req.getRequestDispatcher("/WEB-INF/view/companies/companyDeleted.jsp").forward(req, resp);
+                companyService.updateCompany(name, country, companyId);
+                req.getRequestDispatcher("/WEB-INF/view/companies/companyUpdated.jsp").forward(req, resp);
             } else {
                 req.getRequestDispatcher("/WEB-INF/view/companies/companyIdNotExists.jsp").forward(req, resp);
             }

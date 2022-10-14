@@ -1,4 +1,4 @@
-package controller;
+package controller.companies;
 
 import config.ServiceConnection;
 import services.CompanyService;
@@ -11,9 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/createCompanyForm")
-public class CreateCompanyFormController extends HttpServlet {
-
+@WebServlet(urlPatterns = "/deleteCompanyForm")
+public class DeleteCompanyFormController extends HttpServlet {
     CompanyService companyService;
 
     @Override
@@ -24,7 +23,7 @@ public class CreateCompanyFormController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/view/companies/createCompanyForm.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/view/companies/deleteCompanyForm.jsp").forward(req, resp);
     }
 
     @Override
@@ -33,13 +32,11 @@ public class CreateCompanyFormController extends HttpServlet {
 
         try {
             Integer companyId = Integer.parseInt(req.getParameter("companyId"));
-            String name = req.getParameter("companyName");
-            String country = req.getParameter("country");
             if (checkCompanies.IsCompanyIdExists(companyId)) {
-                req.getRequestDispatcher("/WEB-INF/view/companies/companyIdAlreadyExists.jsp").forward(req, resp);
+                companyService.deleteCompany(companyId);
+                req.getRequestDispatcher("/WEB-INF/view/companies/companyDeleted.jsp").forward(req, resp);
             } else {
-                companyService.createCompany(companyId, name, country);
-                req.getRequestDispatcher("/WEB-INF/view/companies/companyCreated.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/view/companies/companyIdNotExists.jsp").forward(req, resp);
             }
         } catch (Exception ex) {
             req.getRequestDispatcher("/WEB-INF/view/companies/invalidCompanyIdFormat.jsp").forward(req, resp);
