@@ -20,7 +20,7 @@
                          <li><a href="/deleteCustomerForm">Delete customer</a></li>
                          <li><a href="/getCustomerByIdForm">Get customer by id</a></li>
                          <li><a href="/getCustomers">Get customers</a></li>
-                         <li><a href="#">Update customer</a></li>
+                         <li><a href="/updateCustomerForm">Update customer</a></li>
                        </ul>
                      </li>
                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Developers<span class="caret"></span></a>

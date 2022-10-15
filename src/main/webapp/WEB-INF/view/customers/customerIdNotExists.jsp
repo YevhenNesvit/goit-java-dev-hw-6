@@ -21,7 +21,7 @@
           <h2><b>customer_id does not exist. Please, retry</b></h2>
           <p><a href="/deleteCustomerForm">Delete customer</a></p>
           <p><a href="/getCustomerByIdForm">Get customer by id</a></p>
-          <p><a href="/updateCompanyForm">Update company</a></p>
+          <p><a href="/updateCustomerForm">Update customer</a></p>
         </div>
     </body>
 </html>
