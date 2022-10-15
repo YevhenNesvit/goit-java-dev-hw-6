@@ -1,4 +1,4 @@
-package controller;
+package controller.customers;
 
 import config.ServiceConnection;
 import services.CustomerService;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/updateCustomerForm")
-public class UpdateCustomerFormController extends HttpServlet {
+@WebServlet(urlPatterns = "/createCustomerForm")
+public class CreateCustomerFormController extends HttpServlet {
     CustomerService customerService;
 
     @Override
@@ -23,7 +23,7 @@ public class UpdateCustomerFormController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/view/customers/updateCustomerForm.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/view/customers/createCustomerForm.jsp").forward(req, resp);
     }
 
     @Override
@@ -35,10 +35,10 @@ public class UpdateCustomerFormController extends HttpServlet {
             String name = req.getParameter("customerName");
             String country = req.getParameter("country");
             if (checkCustomers.IsCustomerIdExists(customerId)) {
-                customerService.updateCustomer(name, country, customerId);
-                req.getRequestDispatcher("/WEB-INF/view/customers/customerUpdated.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/view/customers/customerIdAlreadyExists.jsp").forward(req, resp);
             } else {
-                req.getRequestDispatcher("/WEB-INF/view/customers/customerIdNotExists.jsp").forward(req, resp);
+                customerService.createCustomer(customerId, name, country);
+                req.getRequestDispatcher("/WEB-INF/view/customers/customerCreated.jsp").forward(req, resp);
             }
         } catch (Exception ex) {
             req.getRequestDispatcher("/WEB-INF/view/customers/invalidCustomerIdFormat.jsp").forward(req, resp);

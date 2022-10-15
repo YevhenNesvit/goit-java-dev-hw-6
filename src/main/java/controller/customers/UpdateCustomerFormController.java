@@ -1,4 +1,4 @@
-package controller;
+package controller.customers;
 
 import config.ServiceConnection;
 import services.CustomerService;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/deleteCustomerForm")
-public class DeleteCustomerFormController extends HttpServlet {
+@WebServlet(urlPatterns = "/updateCustomerForm")
+public class UpdateCustomerFormController extends HttpServlet {
     CustomerService customerService;
 
     @Override
@@ -23,7 +23,7 @@ public class DeleteCustomerFormController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/view/customers/deleteCustomerForm.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/view/customers/updateCustomerForm.jsp").forward(req, resp);
     }
 
     @Override
@@ -32,9 +32,11 @@ public class DeleteCustomerFormController extends HttpServlet {
 
         try {
             Integer customerId = Integer.parseInt(req.getParameter("customerId"));
+            String name = req.getParameter("customerName");
+            String country = req.getParameter("country");
             if (checkCustomers.IsCustomerIdExists(customerId)) {
-                customerService.deleteCustomer(customerId);
-                req.getRequestDispatcher("/WEB-INF/view/customers/customerDeleted.jsp").forward(req, resp);
+                customerService.updateCustomer(name, country, customerId);
+                req.getRequestDispatcher("/WEB-INF/view/customers/customerUpdated.jsp").forward(req, resp);
             } else {
                 req.getRequestDispatcher("/WEB-INF/view/customers/customerIdNotExists.jsp").forward(req, resp);
             }

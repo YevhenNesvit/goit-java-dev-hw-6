@@ -1,7 +1,6 @@
-package controller;
+package controller.customers;
 
 import config.ServiceConnection;
-import model.dto.CustomerDto;
 import services.CustomerService;
 import utils.CheckCustomers;
 
@@ -11,11 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-@WebServlet(urlPatterns = "/getCustomerByIdForm")
-public class GetCustomerByIdFormController extends HttpServlet {
+@WebServlet(urlPatterns = "/deleteCustomerForm")
+public class DeleteCustomerFormController extends HttpServlet {
     CustomerService customerService;
 
     @Override
@@ -26,8 +23,7 @@ public class GetCustomerByIdFormController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        req.getRequestDispatcher("/WEB-INF/view/customers/getCustomerByIdForm.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/view/customers/deleteCustomerForm.jsp").forward(req, resp);
     }
 
     @Override
@@ -35,12 +31,10 @@ public class GetCustomerByIdFormController extends HttpServlet {
         CheckCustomers checkCustomers = new CheckCustomers();
 
         try {
-            List<CustomerDto> customers = new ArrayList<>();
             Integer customerId = Integer.parseInt(req.getParameter("customerId"));
             if (checkCustomers.IsCustomerIdExists(customerId)) {
-                customers.add(customerService.customerById(customerId));
-                req.setAttribute("customers", customers);
-                req.getRequestDispatcher("/WEB-INF/view/customers/customerById.jsp").forward(req, resp);
+                customerService.deleteCustomer(customerId);
+                req.getRequestDispatcher("/WEB-INF/view/customers/customerDeleted.jsp").forward(req, resp);
             } else {
                 req.getRequestDispatcher("/WEB-INF/view/customers/customerIdNotExists.jsp").forward(req, resp);
             }
