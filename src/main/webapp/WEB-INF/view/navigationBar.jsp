@@ -18,7 +18,7 @@
                        <ul class="dropdown-menu">
                          <li><a href="/createCustomerForm">Create customer</a></li>
                          <li><a href="/deleteCustomerForm">Delete customer</a></li>
-                         <li><a href="#">Get customer by id</a></li>
+                         <li><a href="/getCustomerByIdForm">Get customer by id</a></li>
                          <li><a href="/getCustomers">Get customers</a></li>
                          <li><a href="#">Update customer</a></li>
                        </ul>

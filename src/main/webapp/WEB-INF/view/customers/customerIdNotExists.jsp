@@ -20,7 +20,7 @@
         <div class="center">
           <h2><b>customer_id does not exist. Please, retry</b></h2>
           <p><a href="/deleteCustomerForm">Delete customer</a></p>
-          <p><a href="/getCompanyByIdForm">Get company by id</a></p>
+          <p><a href="/getCustomerByIdForm">Get customer by id</a></p>
           <p><a href="/updateCompanyForm">Update company</a></p>
         </div>
     </body>
