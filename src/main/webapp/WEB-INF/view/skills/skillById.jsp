@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <title>Customer by id</title>
+        <title>Skill by id</title>
         <style>
             .center {
                 text-align: center;
@@ -25,13 +25,13 @@
     <body>
         <c:import url="${contextPath}/WEB-INF/view/navigationBar.jsp"/>
         <div class ="center">
-          <h2>Customer</h2>
+          <h2>Skill</h2>
             <table border="2">
-              <tr><th>customer_id</th><th>name</th><th>country</th></tr>
-                <c:forEach var="customer" items="${customers}">
-                  <tr><td>${customer.customerId}</td>
-                    <td>${customer.name}</td>
-                    <td>${customer.country}</td>
+              <tr><th>skill_id</th><th>name</th><th>skill_level</th></tr>
+                <c:forEach var="skill" items="${skills}">
+                  <tr><td>${skill.skillId}</td>
+                    <td>${skill.name}</td>
+                    <td>${skill.skillLevel}</td>
                   </tr>
                 </c:forEach>
             </table>

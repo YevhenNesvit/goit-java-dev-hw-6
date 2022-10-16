@@ -20,7 +20,7 @@
         <div class="center">
           <h2><b>skill_id does not exist. Please, retry</b></h2>
           <p><a href="/deleteSkillForm">Delete skill</a></p>
-          <p><a href="/getCustomerByIdForm">Get customer by id</a></p>
+          <p><a href="/getSkillByIdForm">Get skill by id</a></p>
           <p><a href="/updateCustomerForm">Update customer</a></p>
         </div>
     </body>
