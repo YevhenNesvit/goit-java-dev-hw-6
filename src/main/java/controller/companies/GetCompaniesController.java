@@ -27,9 +27,8 @@ public class GetCompaniesController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        List<CompanyDto> companies;
         try {
-            companies = companyService.companiesList();
+            List<CompanyDto> companies = companyService.companiesList();
             req.setAttribute("companies", companies);
         } catch (SQLException e) {
             e.printStackTrace();

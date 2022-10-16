@@ -50,7 +50,7 @@
                          <li><a href="/deleteSkillForm">Delete skill</a></li>
                          <li><a href="/getSkillByIdForm">Get skill by id</a></li>
                          <li><a href="/getSkills">Get skills</a></li>
-                         <li><a href="#">Update skill</a></li>
+                         <li><a href="/updateSkillForm">Update skill</a></li>
                        </ul>
                      </li>
                    </ul>

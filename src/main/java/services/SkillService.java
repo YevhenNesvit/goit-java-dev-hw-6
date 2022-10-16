@@ -66,7 +66,7 @@ public class SkillService {
         return skillConverter.from(skill);
     }
 
-    public void updateDeveloper(String name, String skillLevel, Integer id) throws SQLException {
+    public void updateSkill(String name, String skillLevel, Integer id) {
         try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(UPDATE_SKILL);
             statement.setString(1, name);
@@ -79,7 +79,7 @@ public class SkillService {
         }
     }
 
-    public void deleteSkill(Integer id) throws SQLException {
+    public void deleteSkill(Integer id) {
 
         try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(DELETE_SKILL);
@@ -91,7 +91,7 @@ public class SkillService {
         }
     }
 
-    public void createSkill(Integer skillId, String name, String skillLevel) throws SQLException {
+    public void createSkill(Integer skillId, String name, String skillLevel) {
 
         try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(INSERT);

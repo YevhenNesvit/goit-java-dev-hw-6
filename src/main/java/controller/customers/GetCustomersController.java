@@ -27,9 +27,8 @@ public class GetCustomersController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        List<CustomerDto> customers;
         try {
-            customers = customerService.customerList();
+            List<CustomerDto> customers = customerService.customerList();
             req.setAttribute("customers", customers);
         } catch (SQLException e) {
             e.printStackTrace();
