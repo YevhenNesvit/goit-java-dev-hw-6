@@ -14,7 +14,7 @@ import java.util.List;
 
 public class CustomerService {
     private static final String DELETE_CUSTOMER = "DELETE FROM customers where customer_id = ?";
-    private static final String SELECT = "SELECT customer_id, name, country FROM customers";
+    private static final String SELECT = "SELECT customer_id, name, country FROM customers order by 1";
     private static final String SELECT_BY_ID = "SELECT customer_id, name, country FROM customers WHERE customer_id = ?";
     private static final String INSERT = "INSERT INTO customers (customer_id, name, country) VALUES (?, ?, ?)";
     private static final String UPDATE_CUSTOMER = "UPDATE customers SET name = ?, country = ? WHERE customer_id = ?";
@@ -66,7 +66,7 @@ public class CustomerService {
         return customerConverter.from(customer);
     }
 
-    public void updateCustomer(String name, String country, Integer id) throws SQLException {
+    public void updateCustomer(String name, String country, Integer id) {
         try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(UPDATE_CUSTOMER);
             statement.setString(1, name);
@@ -79,7 +79,7 @@ public class CustomerService {
         }
     }
 
-    public void deleteCustomer(Integer id) throws SQLException {
+    public void deleteCustomer(Integer id) {
 
         try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(DELETE_CUSTOMER);
@@ -91,7 +91,7 @@ public class CustomerService {
         }
     }
 
-    public void createCustomer(Integer customerId, String name, String country) throws SQLException {
+    public void createCustomer(Integer customerId, String name, String country) {
 
         try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(INSERT);

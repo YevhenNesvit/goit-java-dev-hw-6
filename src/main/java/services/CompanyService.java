@@ -14,7 +14,7 @@ import java.util.List;
 
 public class CompanyService {
     private static final String DELETE_COMPANY = "DELETE FROM companies where company_id = ?";
-    private static final String SELECT = "SELECT company_id, name, country FROM companies";
+    private static final String SELECT = "SELECT company_id, name, country FROM companies order by 1";
     private static final String SELECT_BY_ID = "SELECT company_id, name, country FROM companies " +
             "WHERE company_id = ?";
     private static final String INSERT_COMPANY = "INSERT INTO companies (company_id, name, country) VALUES (?, ?, ?)";
@@ -37,14 +37,12 @@ public class CompanyService {
         }
 
         List<CompanyDao> list = new ArrayList<>();
-        if (resultSet != null) {
             while (resultSet.next()) {
                 CompanyDao company = new CompanyDao(resultSet.getInt("company_id"),
                         resultSet.getString("name"), resultSet.getString("country"));
 
                 list.add(company);
             }
-        }
 
         return companyConverter.fromList(list);
     }
@@ -69,7 +67,7 @@ public class CompanyService {
         return companyConverter.from(company);
     }
 
-    public void updateCompany(String name, String country, Integer id) throws SQLException {
+    public void updateCompany(String name, String country, Integer id) {
         try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(UPDATE_COMPANY);
             statement.setString(1, name);
@@ -82,7 +80,7 @@ public class CompanyService {
         }
     }
 
-    public void deleteCompany(Integer id) throws SQLException {
+    public void deleteCompany(Integer id) {
 
         try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(DELETE_COMPANY);
@@ -94,7 +92,7 @@ public class CompanyService {
         }
     }
 
-    public void createCompany(Integer companyId, String name, String country) throws SQLException {
+    public void createCompany(Integer companyId, String name, String country) {
 
         try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(INSERT_COMPANY);

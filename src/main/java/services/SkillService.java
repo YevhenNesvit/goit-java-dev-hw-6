@@ -1,6 +1,6 @@
 package services;
 
-import config.ServiceConnection;
+import config.DatabaseManagerConnector;
 import converter.SkillConverter;
 import model.dao.SkillDao;
 import model.dto.SkillDto;
@@ -13,17 +13,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SkillService {
-    ServiceConnection serviceConnection = new ServiceConnection();
     private static final String DELETE_SKILL = "DELETE FROM skills where skill_id = ?";
-    private static final String SELECT = "SELECT skill_id, name, skill_level FROM skills";
+    private static final String SELECT = "SELECT skill_id, name, skill_level FROM skills order by 1";
     private static final String SELECT_BY_ID = "SELECT skill_id, name, skill_level FROM skills WHERE skill_id = ?";
     private static final String INSERT = "INSERT INTO skills (skill_id, name, skill_level) VALUES (?, ?, ?)";
     private static final String UPDATE_SKILL = "UPDATE skills SET name = ?, skill_level = ? WHERE skill_id = ?";
     SkillConverter skillConverter = new SkillConverter();
+    DatabaseManagerConnector connector;
+
+    public SkillService(DatabaseManagerConnector connector) {
+        this.connector = connector;
+    }
 
     public List<SkillDto> skillsList() throws SQLException {
         ResultSet resultSet = null;
-        try (Connection connection = serviceConnection.connect().getConnection()) {
+        try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(SELECT);
 
             resultSet = statement.executeQuery();
@@ -44,7 +48,7 @@ public class SkillService {
 
     public SkillDto skillById(Integer id) throws SQLException {
         ResultSet resultSet = null;
-        try (Connection connection = serviceConnection.connect().getConnection()) {
+        try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(SELECT_BY_ID);
             statement.setInt(1, id);
 
@@ -63,7 +67,7 @@ public class SkillService {
     }
 
     public void updateDeveloper(String name, String skillLevel, Integer id) throws SQLException {
-        try (Connection connection = serviceConnection.connect().getConnection()) {
+        try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(UPDATE_SKILL);
             statement.setString(1, name);
             statement.setString(2, skillLevel);
@@ -77,7 +81,7 @@ public class SkillService {
 
     public void deleteSkill(Integer id) throws SQLException {
 
-        try (Connection connection = serviceConnection.connect().getConnection()) {
+        try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(DELETE_SKILL);
             statement.setInt(1, id);
 
@@ -89,7 +93,7 @@ public class SkillService {
 
     public void createSkill(Integer skillId, String name, String skillLevel) throws SQLException {
 
-        try (Connection connection = serviceConnection.connect().getConnection()) {
+        try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(INSERT);
             statement.setInt(1, skillId);
             statement.setString(2, name);

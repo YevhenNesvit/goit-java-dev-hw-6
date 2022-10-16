@@ -49,7 +49,7 @@
                          <li><a href="/books/form">Create skill</a></li>
                          <li><a href="#">Delete skill</a></li>
                          <li><a href="#">Get skill by id</a></li>
-                         <li><a href="#">Get skills</a></li>
+                         <li><a href="/getSkills">Get skills</a></li>
                          <li><a href="#">Update skill</a></li>
                        </ul>
                      </li>

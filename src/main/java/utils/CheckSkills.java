@@ -1,11 +1,13 @@
 package utils;
 
+import config.ServiceConnection;
 import services.SkillService;
 
 import java.sql.SQLException;
 
 public class CheckSkills {
-    SkillService skillService = new SkillService();
+    ServiceConnection connection = new ServiceConnection();
+    SkillService skillService = new SkillService(connection.connect());
 
     public boolean IsSkillIdExists(Integer id) throws SQLException {
         for (int i = 0; i < skillService.skillsList().size(); i++) {
