@@ -46,7 +46,7 @@
                      </li>
                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Skills<span class="caret"></span></a>
                        <ul class="dropdown-menu">
-                         <li><a href="/books/form">Create skill</a></li>
+                         <li><a href="/createSkillForm">Create skill</a></li>
                          <li><a href="#">Delete skill</a></li>
                          <li><a href="#">Get skill by id</a></li>
                          <li><a href="/getSkills">Get skills</a></li>

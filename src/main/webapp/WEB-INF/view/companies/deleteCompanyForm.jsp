@@ -21,7 +21,7 @@
     <body>
         <c:import url="${contextPath}/WEB-INF/view/navigationBar.jsp"/>
         <form method="post" class="center">
-            <label for="companyId"> Please, enter company_id to delete: </label><br>
+            <label for="companyId">Please, enter company_id to delete:</label><br>
             <input type="text" id="companyId" name="companyId"><br>
             <button type="submit" class="but">Delete</button>
         </form>

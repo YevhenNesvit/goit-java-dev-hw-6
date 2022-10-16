@@ -21,11 +21,11 @@
     <body>
         <c:import url="${contextPath}/WEB-INF/view/navigationBar.jsp"/>
         <form method="post" class="center">
-            <label for="companyId"> Please, enter company_id of new company: </label><br>
+            <label for="companyId">Please, enter company_id of new company:</label><br>
             <input type="text" id="companyId" name="companyId"><br>
-            <label for="companyName"> name of new company: </label><br>
+            <label for="companyName">name of new company:</label><br>
             <input type="text" id="companyName" name="companyName"><br>
-            <label for="country"> country of new company: </label><br>
+            <label for="country">country of new company:</label><br>
             <input type="text" id="country" name="country"><br>
             <button type="submit" class="but">Create</button>
         </form>

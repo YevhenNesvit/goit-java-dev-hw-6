@@ -21,11 +21,11 @@
     <body>
         <c:import url="${contextPath}/WEB-INF/view/navigationBar.jsp"/>
         <form method="post" class="center">
-            <label for="companyId"> Please, enter company_id of company to update: </label><br>
+            <label for="companyId">Please, enter company_id of company to update:</label><br>
             <input type="text" id="companyId" name="companyId"><br>
-            <label for="companyName"> name of company to update: </label><br>
+            <label for="companyName">name of company to update:</label><br>
             <input type="text" id="companyName" name="companyName"><br>
-            <label for="country"> country of company to update: </label><br>
+            <label for="country">country of company to update:</label><br>
             <input type="text" id="country" name="country"><br>
             <button type="submit" class="but">Update</button>
         </form>
