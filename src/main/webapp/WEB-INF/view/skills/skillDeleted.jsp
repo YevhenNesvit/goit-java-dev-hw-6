@@ -7,7 +7,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <title>Invalid skill id format</title>
+        <META http-equiv="refresh" content="4; URL=/getSkills">
+        <title>Skill deleted</title>
         <style>
            .center {
             text-align: center;
@@ -18,11 +19,7 @@
     <body>
         <c:import url="${contextPath}/WEB-INF/view/navigationBar.jsp"/>
         <div class="center">
-          <h2><b>Invalid value. Please, use digits for skill_id</b></h2>
-          <p><a href="/createSkillForm">Create skill</a></p>
-          <p><a href="/deleteSkillForm">Delete skill</a></p>
-          <p><a href="/getCustomerByIdForm">Get customer by id</a></p>
-          <p><a href="/updateCustomerForm">Update customer</a></p>
+          <h2><b>Skill successfully deleted!</b></h2>
         </div>
     </body>
 </html>
