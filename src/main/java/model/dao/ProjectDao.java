@@ -1,6 +1,6 @@
 package model.dao;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class ProjectDao {
     private Integer projectId;

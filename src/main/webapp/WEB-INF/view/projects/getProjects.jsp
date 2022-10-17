@@ -27,11 +27,14 @@
         <div class ="center">
           <h2>Projects</h2>
             <table border="2">
-              <tr><th>creation_date</th><th>name</th><th>number of developers</th></tr>
+              <tr><th>project_id</th><th>name</th><th>customer_id</th><th>company_id</th><th>cost</th><th>creation_date</th></tr>
                 <c:forEach var="project" items="${projects}">
-                  <tr><td>${project.creationDate}</td>
+                  <tr><td>${project.projectId}</td>
                     <td>${project.name}</td>
-                    <td>${project.numberOfDevelopers}</td>
+                    <td>${project.customerId}</td>
+                    <td>${project.companyId}</td>
+                    <td>${project.cost}</td>
+                    <td>${project.creationDate}</td>
                   </tr>
                 </c:forEach>
             </table>

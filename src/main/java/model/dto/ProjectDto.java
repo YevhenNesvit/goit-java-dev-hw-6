@@ -1,22 +1,35 @@
 package model.dto;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
 
 public class ProjectDto {
-    private Date creationDate;
+    private Integer projectId;
     private String name;
-    private int numberOfDevelopers;
+    private Integer customerId;
+    private Integer companyId;
+    private Integer cost;
+    private Date creationDate;
+
+    public ProjectDto(Integer projectId, String name, Integer customerId, Integer companyId, Integer cost, Date creationDate) {
+        this.projectId = projectId;
+        this.name = name;
+        this.customerId = customerId;
+        this.companyId = companyId;
+        this.cost = cost;
+        this.creationDate = creationDate;
+    }
 
     public ProjectDto() {
+
     }
 
-    public Date getCreationDate() {
-        return creationDate;
+    public Integer getProjectId() {
+        return projectId;
     }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
     }
 
     public String getName() {
@@ -27,21 +40,36 @@ public class ProjectDto {
         this.name = name;
     }
 
-    public int getNumberOfDevelopers() {
-        return numberOfDevelopers;
+    public Integer getCustomerId() {
+        return customerId;
     }
 
-    public void setNumberOfDevelopers(int numberOfDevelopers) {
-        this.numberOfDevelopers = numberOfDevelopers;
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
     }
 
-    @Override
-    public String toString() {
-        return "ProjectDto {" +
-                "creation_date = " + creationDate +
-                ", name = '" + name + '\'' +
-                ", numberOfDevelopers = " + numberOfDevelopers +
-                '}';
+    public Integer getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Integer companyId) {
+        this.companyId = companyId;
+    }
+
+    public Integer getCost() {
+        return cost;
+    }
+
+    public void setCost(Integer cost) {
+        this.cost = cost;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 
     @Override
@@ -49,12 +77,13 @@ public class ProjectDto {
         if (this == o) return true;
         if (!(o instanceof ProjectDto)) return false;
         ProjectDto that = (ProjectDto) o;
-        return Objects.equals(getCreationDate(), that.getCreationDate()) && Objects.equals(getName(), that.getName())
-                && Objects.equals(getNumberOfDevelopers(), that.getNumberOfDevelopers());
+        return Objects.equals(getProjectId(), that.getProjectId()) && Objects.equals(getName(), that.getName()) &&
+                Objects.equals(getCustomerId(), that.getCustomerId()) && Objects.equals(getCompanyId(), that.getCompanyId())
+                && Objects.equals(getCost(), that.getCost()) && Objects.equals(getCreationDate(), that.getCreationDate());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCreationDate(), getName(), getNumberOfDevelopers());
+        return Objects.hash(getProjectId(), getName(), getCustomerId(), getCompanyId(), getCost(), getCreationDate());
     }
 }
