@@ -40,7 +40,7 @@
                        <ul class="dropdown-menu">
                          <li><a href="/books/form">Create project</a></li>
                          <li><a href="#">Delete project</a></li>
-                         <li><a href="#">Get projects</a></li>
+                         <li><a href="/getProjects">Get projects</a></li>
                          <li><a href="#">Update project</a></li>
                        </ul>
                      </li>

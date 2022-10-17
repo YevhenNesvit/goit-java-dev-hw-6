@@ -1,4 +1,4 @@
-package controller;
+package controller.skills;
 
 import config.ServiceConnection;
 import services.SkillService;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/updateSkillForm")
-public class UpdateSkillFormController extends HttpServlet {
+@WebServlet(urlPatterns = "/deleteSkillForm")
+public class DeleteSkillFormController extends HttpServlet {
     SkillService skillService;
 
     @Override
@@ -23,7 +23,7 @@ public class UpdateSkillFormController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/view/skills/updateSkillForm.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/view/skills/deleteSkillForm.jsp").forward(req, resp);
     }
 
     @Override
@@ -32,11 +32,9 @@ public class UpdateSkillFormController extends HttpServlet {
 
         try {
             Integer skillId = Integer.parseInt(req.getParameter("skillId"));
-            String name = req.getParameter("skillName");
-            String skillLevel = req.getParameter("skillLevel");
             if (checkSkills.IsSkillIdExists(skillId)) {
-                skillService.updateSkill(name, skillLevel, skillId);
-                req.getRequestDispatcher("/WEB-INF/view/skills/skillUpdated.jsp").forward(req, resp);
+                skillService.deleteSkill(skillId);
+                req.getRequestDispatcher("/WEB-INF/view/skills/skillDeleted.jsp").forward(req, resp);
             } else {
                 req.getRequestDispatcher("/WEB-INF/view/skills/skillIdNotExists.jsp").forward(req, resp);
             }

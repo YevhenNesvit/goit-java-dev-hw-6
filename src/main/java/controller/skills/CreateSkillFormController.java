@@ -1,7 +1,6 @@
-package controller;
+package controller.skills;
 
 import config.ServiceConnection;
-import model.dto.SkillDto;
 import services.SkillService;
 import utils.CheckSkills;
 
@@ -11,11 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-@WebServlet(urlPatterns = "/getSkillByIdForm")
-public class GetSkillByIdFormController extends HttpServlet {
+@WebServlet(urlPatterns = "/createSkillForm")
+public class CreateSkillFormController extends HttpServlet {
     SkillService skillService;
 
     @Override
@@ -26,8 +23,7 @@ public class GetSkillByIdFormController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        req.getRequestDispatcher("/WEB-INF/view/skills/getSkillByIdForm.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/view/skills/createSkillForm.jsp").forward(req, resp);
     }
 
     @Override
@@ -35,14 +31,14 @@ public class GetSkillByIdFormController extends HttpServlet {
         CheckSkills checkSkills = new CheckSkills();
 
         try {
-            List<SkillDto> skills = new ArrayList<>();
             Integer skillId = Integer.parseInt(req.getParameter("skillId"));
+            String name = req.getParameter("skillName");
+            String skillLevel = req.getParameter("skillLevel");
             if (checkSkills.IsSkillIdExists(skillId)) {
-                skills.add(skillService.skillById(skillId));
-                req.setAttribute("skills", skills);
-                req.getRequestDispatcher("/WEB-INF/view/skills/skillById.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/view/skills/skillIdAlreadyExists.jsp").forward(req, resp);
             } else {
-                req.getRequestDispatcher("/WEB-INF/view/skills/skillIdNotExists.jsp").forward(req, resp);
+                skillService.createSkill(skillId, name, skillLevel);
+                req.getRequestDispatcher("/WEB-INF/view/skills/skillCreated.jsp").forward(req, resp);
             }
         } catch (Exception ex) {
             req.getRequestDispatcher("/WEB-INF/view/skills/invalidSkillIdFormat.jsp").forward(req, resp);
