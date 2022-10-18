@@ -40,7 +40,7 @@
                        <ul class="dropdown-menu">
                          <li><a href="/createProjectForm">Create project</a></li>
                          <li><a href="/deleteProjectForm">Delete project</a></li>
-                         <li><a href="#">Get project by id</a></li>
+                         <li><a href="/getProjectByIdForm">Get project by id</a></li>
                          <li><a href="/getProjects">Get projects</a></li>
                          <li><a href="#">Update project</a></li>
                        </ul>

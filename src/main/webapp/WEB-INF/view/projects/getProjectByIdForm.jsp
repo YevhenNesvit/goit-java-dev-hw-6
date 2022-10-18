@@ -7,23 +7,27 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <title>Invalid inputs format</title>
+        <title>Get project by id</title>
         <style>
-           .center {
-            text-align: center;
-            margin-top: 11%;
-           }
-          </style>
+            .center {
+                text-align: center;
+                margin-top: 11%;
+            }
+            .cent {
+                text-align: center;
+            }
+            .but {
+                text-align: center;
+                margin-top: .2%;
+            }
+        </style>
     </head>
     <body>
         <c:import url="${contextPath}/WEB-INF/view/navigationBar.jsp"/>
-        <div class="center">
-          <h2><b>Invalid value. Please, use digits for project_id, customer_id, company_id, cost rows and YYYY-MM-DD format
-          for creation_date</b></h2>
-          <p><a href="/createProjectForm">Create project</a></p>
-          <p><a href="/deleteProjectForm">Delete project</a></p>
-          <p><a href="/getProjectByIdForm">Get project by id</a></p>
-          <p><a href="/updateSkillForm">Update skill</a></p>
-        </div>
+        <form method="post" class="center">
+          <label for="projectId">Please, enter project_id to view project:</label><br>
+          <input type="text" id="projectId" name="projectId"><br>
+          <button type="submit" class="but">Get</button>
+        </form>
     </body>
 </html>

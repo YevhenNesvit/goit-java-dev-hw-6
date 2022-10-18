@@ -20,7 +20,7 @@
         <div class="center">
           <h2><b>project_id does not exist. Please, retry</b></h2>
           <p><a href="/deleteProjectForm">Delete project</a></p>
-          <p><a href="/getSkillByIdForm">Get skill by id</a></p>
+          <p><a href="/getProjectByIdForm">Get project by id</a></p>
           <p><a href="/updateSkillForm">Update skill</a></p>
         </div>
     </body>

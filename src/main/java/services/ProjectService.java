@@ -13,6 +13,8 @@ import java.util.List;
 public class ProjectService {
     private static final String SELECT = "SELECT project_id, name, customer_id, company_id, cost, creation_date " +
             "FROM projects order by 1";
+    private static final String SELECT_BY_ID = "SELECT project_id, name, customer_id, company_id, cost, creation_date " +
+            "FROM projects WHERE project_id = ?";
     private static final String DELETE_PROJECT = "DELETE FROM projects where project_id = ?";
     private static final String INSERT = "INSERT INTO projects (project_id, name, customer_id, company_id, cost, " +
             "creation_date) VALUES (?, ?, ?, ?, ?, ?)";
@@ -47,6 +49,27 @@ public class ProjectService {
         return projectConverter.fromList(list);
     }
 
+    public ProjectDto projectById(Integer id) throws SQLException {
+        ResultSet resultSet = null;
+        try (Connection connection = connector.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(SELECT_BY_ID);
+            statement.setInt(1, id);
+
+            resultSet = statement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        ProjectDao project = new ProjectDao();
+        while (resultSet.next()) {
+            project = new ProjectDao(resultSet.getInt("project_id"), resultSet.getString("name"),
+                    resultSet.getInt("customer_id"), resultSet.getInt("company_id"),
+                    resultSet.getInt("cost"), resultSet.getDate("creation_date"));
+        }
+
+        return projectConverter.from(project);
+    }
+
     public void updateProject(Integer projectId, String name, Integer customerId, Integer companyId, Integer cost, Date creationDate) {
         try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(UPDATE_PROJECT);
@@ -63,7 +86,7 @@ public class ProjectService {
         }
     }
 
-    public void deleteProject(Integer id) throws SQLException {
+    public void deleteProject(Integer id) {
 
         try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(DELETE_PROJECT);
@@ -76,7 +99,7 @@ public class ProjectService {
     }
 
     public void createProject(Integer projectId, String name, Integer customerId, Integer companyId, Integer cost,
-                                Date creationDate) throws SQLException {
+                                Date creationDate) {
 
         try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(INSERT);
