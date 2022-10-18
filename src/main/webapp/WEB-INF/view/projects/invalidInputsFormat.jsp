@@ -23,7 +23,7 @@
           <p><a href="/createProjectForm">Create project</a></p>
           <p><a href="/deleteProjectForm">Delete project</a></p>
           <p><a href="/getProjectByIdForm">Get project by id</a></p>
-          <p><a href="/updateSkillForm">Update skill</a></p>
+          <p><a href="/updateProjectForm">Update project</a></p>
         </div>
     </body>
 </html>

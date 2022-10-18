@@ -42,7 +42,7 @@
                          <li><a href="/deleteProjectForm">Delete project</a></li>
                          <li><a href="/getProjectByIdForm">Get project by id</a></li>
                          <li><a href="/getProjects">Get projects</a></li>
-                         <li><a href="#">Update project</a></li>
+                         <li><a href="/updateProjectForm">Update project</a></li>
                        </ul>
                      </li>
                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Skills<span class="caret"></span></a>

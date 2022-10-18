@@ -73,12 +73,12 @@ public class ProjectService {
     public void updateProject(Integer projectId, String name, Integer customerId, Integer companyId, Integer cost, Date creationDate) {
         try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(UPDATE_PROJECT);
-            statement.setInt(1, projectId);
-            statement.setString(2, name);
-            statement.setInt(3, customerId);
-            statement.setInt(4, companyId);
-            statement.setInt(5, cost);
-            statement.setDate(6, creationDate);
+            statement.setString(1, name);
+            statement.setInt(2, customerId);
+            statement.setInt(3, companyId);
+            statement.setInt(4, cost);
+            statement.setDate(5, creationDate);
+            statement.setInt(6, projectId);
 
             statement.executeUpdate();
         } catch (SQLException e) {
