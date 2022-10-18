@@ -1,12 +1,13 @@
 package utils;
 
+import config.ServiceConnection;
 import services.DeveloperService;
 
 import java.sql.SQLException;
 
 public class CheckDevelopers {
-
-    DeveloperService developerService = new DeveloperService();
+    ServiceConnection connection = new ServiceConnection();
+    DeveloperService developerService = new DeveloperService(connection.connect());
 
     public boolean IsDeveloperIdExists(Integer id) throws SQLException {
         for (int i = 0; i < developerService.developersList().size(); i++) {

@@ -28,7 +28,7 @@
                          <li><a href="/books/form">Create developer</a></li>
                          <li><a href="#">Delete developer</a></li>
                          <li><a href="#">Get developer by id</a></li>
-                         <li><a href="#">Get developers</a></li>
+                         <li><a href="/getDevelopers">Get developers</a></li>
                          <li><a href="#">Get developer by project</a></li>
                          <li><a href="#">Get developer by skill level</a></li>
                          <li><a href="#">Get developer by skill name</a></li>

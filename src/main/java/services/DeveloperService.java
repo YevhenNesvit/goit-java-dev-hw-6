@@ -1,6 +1,6 @@
 package services;
 
-import config.ServiceConnection;
+import config.DatabaseManagerConnector;
 import converter.DeveloperConverter;
 import model.dao.DeveloperDao;
 import model.dto.DeveloperDto;
@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class DeveloperService {
-    ServiceConnection serviceConnection = new ServiceConnection();
     private static final String SALARY_BY_PROJECT_ID = "SELECT SUM(d.salary) as salary " +
             "FROM developers d JOIN developers_per_projects dpp ON dpp.developer_id = d.developer_id " +
             "JOIN projects p ON p.project_id = dpp.project_id WHERE p.project_id = ?";
@@ -38,7 +37,7 @@ public class DeveloperService {
     private static final String INSERT = "INSERT INTO developers (developer_id, first_name, last_name, gender, " +
             "age, company_id, salary) VALUES (?, ?, ?, ?, ?, ?, ?)";
     private static final String SELECT = "SELECT developer_id, first_name, last_name, gender, age, company_id, salary " +
-            "FROM developers";
+            "FROM developers ORDER BY 1";
     private static final String SELECT_BY_ID = "SELECT developer_id, first_name, last_name, gender, age, company_id, salary " +
             "FROM developers " +
             "WHERE developer_id = ?";
@@ -46,10 +45,15 @@ public class DeveloperService {
             "company_id = ?, salary = ? " +
             "WHERE developer_id = ?";
     DeveloperConverter developerConverter = new DeveloperConverter();
+    DatabaseManagerConnector connector;
+
+    public DeveloperService(DatabaseManagerConnector connector) {
+        this.connector = connector;
+    }
 
     public Integer salaryByProjectId(Integer id) throws SQLException {
         ResultSet resultSet = null;
-        try (Connection connection = serviceConnection.connect().getConnection()) {
+        try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(SALARY_BY_PROJECT_ID);
             statement.setInt(1, id);
 
@@ -67,7 +71,7 @@ public class DeveloperService {
 
     public List<DeveloperDto> developersByProjectId(Integer id) throws SQLException {
         ResultSet resultSet = null;
-        try (Connection connection = serviceConnection.connect().getConnection()) {
+        try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(DEVELOPERS_BY_PROJECT_ID);
             statement.setInt(1, id);
 
@@ -91,7 +95,7 @@ public class DeveloperService {
 
     public List<DeveloperDto> developersBySkillName(String name) throws SQLException {
         ResultSet resultSet = null;
-        try (Connection connection = serviceConnection.connect().getConnection()) {
+        try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(DEVELOPERS_BY_SKILL_NAME);
             statement.setString(1, name);
 
@@ -115,7 +119,7 @@ public class DeveloperService {
 
     public List<DeveloperDto> developersBySkillLevel(String level) throws SQLException {
         ResultSet resultSet = null;
-        try (Connection connection = serviceConnection.connect().getConnection()) {
+        try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(DEVELOPERS_BY_SKILL_LEVEL);
             statement.setString(1, level);
 
@@ -139,7 +143,7 @@ public class DeveloperService {
 
     public List<DeveloperDto> developersList() throws SQLException {
         ResultSet resultSet = null;
-        try (Connection connection = serviceConnection.connect().getConnection()) {
+        try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(SELECT);
 
             resultSet = statement.executeQuery();
@@ -162,7 +166,7 @@ public class DeveloperService {
 
     public DeveloperDto developerById(Integer id) throws SQLException {
         ResultSet resultSet = null;
-        try (Connection connection = serviceConnection.connect().getConnection()) {
+        try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(SELECT_BY_ID);
             statement.setInt(1, id);
 
@@ -184,7 +188,7 @@ public class DeveloperService {
 
     public void updateDeveloper(String firstName, String lastName, String gender, Integer age, Integer companyId,
                                 Integer salary, Integer id) throws SQLException {
-        try (Connection connection = serviceConnection.connect().getConnection()) {
+        try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(UPDATE_DEVELOPER);
             statement.setString(1, firstName);
             statement.setString(2, lastName);
@@ -202,7 +206,7 @@ public class DeveloperService {
 
     public void deleteDeveloper(Integer id) throws SQLException {
 
-        try (Connection connection = serviceConnection.connect().getConnection()) {
+        try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(DELETE_DEVELOPER);
             statement.setInt(1, id);
 
@@ -215,7 +219,7 @@ public class DeveloperService {
     public void createDeveloper(Integer developerId, String firstName, String lastName, String gender, Integer age,
                                 Integer companyId, Integer salary) throws SQLException {
 
-        try (Connection connection = serviceConnection.connect().getConnection()) {
+        try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(INSERT);
             statement.setInt(1, developerId);
             statement.setString(2, firstName);
