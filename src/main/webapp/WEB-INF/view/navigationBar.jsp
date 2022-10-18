@@ -32,14 +32,14 @@
                          <li><a href="#">Get developer by project</a></li>
                          <li><a href="#">Get developer by skill level</a></li>
                          <li><a href="#">Get developer by skill name</a></li>
-                         <li><a href="#">Get salary</a></li>
+                         <li><a href="#">Get salary by project</a></li>
                          <li><a href="#">Update developer</a></li>
                        </ul>
                      </li>
                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Projects<span class="caret"></span></a>
                        <ul class="dropdown-menu">
                          <li><a href="/createProjectForm">Create project</a></li>
-                         <li><a href="#">Delete project</a></li>
+                         <li><a href="/deleteProjectForm">Delete project</a></li>
                          <li><a href="#">Get project by id</a></li>
                          <li><a href="/getProjects">Get projects</a></li>
                          <li><a href="#">Update project</a></li>

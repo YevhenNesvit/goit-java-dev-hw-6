@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <title>Invalid inputs format</title>
+        <title>Project id does not exist</title>
         <style>
            .center {
             text-align: center;
@@ -18,9 +18,7 @@
     <body>
         <c:import url="${contextPath}/WEB-INF/view/navigationBar.jsp"/>
         <div class="center">
-          <h2><b>Invalid value. Please, use digits for project_id, customer_id, company_id, cost rows and YYYY-MM-DD format
-          for creation_date</b></h2>
-          <p><a href="/createProjectForm">Create project</a></p>
+          <h2><b>project_id does not exist. Please, retry</b></h2>
           <p><a href="/deleteProjectForm">Delete project</a></p>
           <p><a href="/getSkillByIdForm">Get skill by id</a></p>
           <p><a href="/updateSkillForm">Update skill</a></p>
