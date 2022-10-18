@@ -1,4 +1,4 @@
-package controller;
+package controller.projects;
 
 import config.ServiceConnection;
 import model.dto.ProjectDto;

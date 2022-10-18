@@ -1,7 +1,6 @@
-package controller;
+package controller.projects;
 
 import config.ServiceConnection;
-import model.dto.ProjectDto;
 import services.ProjectService;
 import utils.CheckProjects;
 
@@ -11,11 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Date;
 
-@WebServlet(urlPatterns = "/getProjectByIdForm")
-public class GetProjectByIdFormController extends HttpServlet {
+@WebServlet(urlPatterns = "/updateProjectForm")
+public class UpdateProjectFormController extends HttpServlet {
     ProjectService projectService;
 
     @Override
@@ -26,8 +24,7 @@ public class GetProjectByIdFormController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        req.getRequestDispatcher("/WEB-INF/view/projects/getProjectByIdForm.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/view/projects/updateProjectForm.jsp").forward(req, resp);
     }
 
     @Override
@@ -35,12 +32,15 @@ public class GetProjectByIdFormController extends HttpServlet {
         CheckProjects checkProjects = new CheckProjects();
 
         try {
-            List<ProjectDto> projects = new ArrayList<>();
             Integer projectId = Integer.parseInt(req.getParameter("projectId"));
+            String name = req.getParameter("projectName");
+            Integer customerId = Integer.parseInt(req.getParameter("customerId"));
+            Integer companyId = Integer.parseInt(req.getParameter("companyId"));
+            Integer cost = Integer.parseInt(req.getParameter("cost"));
+            Date creationDate = java.sql.Date.valueOf(req.getParameter("creationDate"));
             if (checkProjects.IsProjectIdExists(projectId)) {
-                projects.add(projectService.projectById(projectId));
-                req.setAttribute("projects", projects);
-                req.getRequestDispatcher("/WEB-INF/view/projects/projectById.jsp").forward(req, resp);
+                projectService.updateProject(projectId, name, customerId, companyId, cost, creationDate);
+                req.getRequestDispatcher("/WEB-INF/view/projects/projectUpdated.jsp").forward(req, resp);
             } else {
                 req.getRequestDispatcher("/WEB-INF/view/projects/projectIdNotExists.jsp").forward(req, resp);
             }

@@ -1,6 +1,7 @@
-package controller;
+package controller.projects;
 
 import config.ServiceConnection;
+import model.dto.ProjectDto;
 import services.ProjectService;
 import utils.CheckProjects;
 
@@ -10,9 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-@WebServlet(urlPatterns = "/deleteProjectForm")
-public class DeleteProjectFormController extends HttpServlet {
+@WebServlet(urlPatterns = "/getProjectByIdForm")
+public class GetProjectByIdFormController extends HttpServlet {
     ProjectService projectService;
 
     @Override
@@ -23,7 +26,8 @@ public class DeleteProjectFormController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/view/projects/deleteProjectForm.jsp").forward(req, resp);
+
+        req.getRequestDispatcher("/WEB-INF/view/projects/getProjectByIdForm.jsp").forward(req, resp);
     }
 
     @Override
@@ -31,10 +35,12 @@ public class DeleteProjectFormController extends HttpServlet {
         CheckProjects checkProjects = new CheckProjects();
 
         try {
+            List<ProjectDto> projects = new ArrayList<>();
             Integer projectId = Integer.parseInt(req.getParameter("projectId"));
             if (checkProjects.IsProjectIdExists(projectId)) {
-                projectService.deleteProject(projectId);
-                req.getRequestDispatcher("/WEB-INF/view/projects/projectDeleted.jsp").forward(req, resp);
+                projects.add(projectService.projectById(projectId));
+                req.setAttribute("projects", projects);
+                req.getRequestDispatcher("/WEB-INF/view/projects/projectById.jsp").forward(req, resp);
             } else {
                 req.getRequestDispatcher("/WEB-INF/view/projects/projectIdNotExists.jsp").forward(req, resp);
             }
