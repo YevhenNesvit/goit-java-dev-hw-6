@@ -7,7 +7,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <title>Invalid inputs format</title>
+        <META http-equiv="refresh" content="4; URL=/getDevelopers">
+        <title>Developer deleted</title>
         <style>
            .center {
             text-align: center;
@@ -18,11 +19,7 @@
     <body>
         <c:import url="${contextPath}/WEB-INF/view/navigationBar.jsp"/>
         <div class="center">
-          <h2><b>Invalid value. Please, use digits for developer_id, age, company_id and salary rows</b></h2>
-          <p><a href="/createDeveloperForm">Create developer</a></p>
-          <p><a href="/deleteDeveloperForm">Delete developer</a></p>
-          <p><a href="/getProjectByIdForm">Get project by id</a></p>
-          <p><a href="/updateProjectForm">Update project</a></p>
+          <h2><b>Developer successfully deleted!</b></h2>
         </div>
     </body>
 </html>

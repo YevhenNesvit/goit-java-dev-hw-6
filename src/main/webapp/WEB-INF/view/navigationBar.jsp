@@ -26,7 +26,7 @@
                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Developers<span class="caret"></span></a>
                        <ul class="dropdown-menu">
                          <li><a href="/createDeveloperForm">Create developer</a></li>
-                         <li><a href="#">Delete developer</a></li>
+                         <li><a href="/deleteDeveloperForm">Delete developer</a></li>
                          <li><a href="#">Get developer by id</a></li>
                          <li><a href="/getDevelopers">Get developers</a></li>
                          <li><a href="#">Get developer by project</a></li>
