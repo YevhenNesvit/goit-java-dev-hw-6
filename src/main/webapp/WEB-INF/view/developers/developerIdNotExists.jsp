@@ -20,7 +20,7 @@
         <div class="center">
           <h2><b>developer_id does not exist. Please, retry</b></h2>
           <p><a href="/deleteDeveloperForm">Delete developer</a></p>
-          <p><a href="/getProjectByIdForm">Get project by id</a></p>
+          <p><a href="/getDeveloperByIdForm">Get developer by id</a></p>
           <p><a href="/updateProjectForm">Update project</a></p>
         </div>
     </body>
