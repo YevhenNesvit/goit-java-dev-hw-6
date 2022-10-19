@@ -22,6 +22,7 @@
           <p><a href="/createDeveloperForm">Create developer</a></p>
           <p><a href="/deleteDeveloperForm">Delete developer</a></p>
           <p><a href="/getDeveloperByIdForm">Get developer by id</a></p>
+          <p><a href="/getDevelopersByProjectForm">Get developers by project</a></p>
           <p><a href="/updateDeveloperForm">Update developer</a></p>
         </div>
     </body>

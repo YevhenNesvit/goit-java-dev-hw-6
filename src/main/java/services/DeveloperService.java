@@ -20,7 +20,8 @@ public class DeveloperService {
             "FROM developers d " +
             "JOIN developers_per_projects dpp ON dpp.developer_id = d.developer_id " +
             "JOIN projects p ON p.project_id = dpp.project_id " +
-            "WHERE p.project_id = ?";
+            "WHERE p.project_id = ? " +
+            "ORDER BY 1";
     private static final String DEVELOPERS_BY_SKILL_NAME = "SELECT d.developer_id, d.first_name, d.last_name, d.gender, " +
             "d.age, d.company_id, d.salary " +
             "FROM developers d " +
@@ -187,7 +188,7 @@ public class DeveloperService {
     }
 
     public void updateDeveloper(String firstName, String lastName, String gender, Integer age, Integer companyId,
-                                Integer salary, Integer id) throws SQLException {
+                                Integer salary, Integer id) {
         try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(UPDATE_DEVELOPER);
             statement.setString(1, firstName);
@@ -204,7 +205,7 @@ public class DeveloperService {
         }
     }
 
-    public void deleteDeveloper(Integer id) throws SQLException {
+    public void deleteDeveloper(Integer id) {
 
         try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(DELETE_DEVELOPER);
@@ -217,7 +218,7 @@ public class DeveloperService {
     }
 
     public void createDeveloper(Integer developerId, String firstName, String lastName, String gender, Integer age,
-                                Integer companyId, Integer salary) throws SQLException {
+                                Integer companyId, Integer salary) {
 
         try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(INSERT);
