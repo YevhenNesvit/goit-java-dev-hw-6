@@ -35,7 +35,7 @@ public class GetDevelopersByProjectFormController extends HttpServlet {
             Integer projectId = Integer.parseInt(req.getParameter("projectId"));
             List<DeveloperDto> developers = developerService.developersByProjectId(projectId);
                 req.setAttribute("developers", developers);
-                req.getRequestDispatcher("/WEB-INF/view/developers/developerById.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/view/developers/developersByProject.jsp").forward(req, resp);
         } catch (Exception ex) {
             req.getRequestDispatcher("/WEB-INF/view/developers/invalidInputsFormat.jsp").forward(req, resp);
         }
