@@ -33,7 +33,7 @@
           <li><a href="#">Get developer by skill level</a></li>
           <li><a href="#">Get developer by skill name</a></li>
           <li><a href="#">Get salary by project</a></li>
-          <li><a href="#">Update developer</a></li>
+          <li><a href="/updateDeveloperForm">Update developer</a></li>
         </ul>
       </li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Projects<span class="caret"></span></a>
