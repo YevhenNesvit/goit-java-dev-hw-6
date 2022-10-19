@@ -28,12 +28,13 @@ public class DeveloperService {
             "JOIN developers_skills ds ON ds.developer_id = d.developer_id " +
             "JOIN skills s ON s.skill_id = ds.skill_id " +
             "WHERE s.name = ?";
-    private static final String DEVELOPERS_BY_SKILL_LEVEL = "SELECT d.developer_id, d.first_name, d.last_name, d.gender," +
-            "d.age, d.company_id, d.salary " +
+    private static final String DEVELOPERS_BY_SKILL_LEVEL = "SELECT DISTINCT d.developer_id, d.first_name, d.last_name, " +
+            "d.gender, d.age, d.company_id, d.salary " +
             "FROM developers d " +
             "JOIN developers_skills ds ON ds.developer_id = d.developer_id " +
             "JOIN skills s ON s.skill_id = ds.skill_id " +
-            "WHERE s.skill_level = ?";
+            "WHERE s.skill_level = ? " +
+            "ORDER BY 1";
     private static final String DELETE_DEVELOPER = "DELETE FROM developers where developer_id = ?";
     private static final String INSERT = "INSERT INTO developers (developer_id, first_name, last_name, gender, " +
             "age, company_id, salary) VALUES (?, ?, ?, ?, ?, ?, ?)";
