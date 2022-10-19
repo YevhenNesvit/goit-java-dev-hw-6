@@ -27,7 +27,8 @@ public class DeveloperService {
             "FROM developers d " +
             "JOIN developers_skills ds ON ds.developer_id = d.developer_id " +
             "JOIN skills s ON s.skill_id = ds.skill_id " +
-            "WHERE s.name = ?";
+            "WHERE s.name = ? " +
+            "ORDER BY 1";
     private static final String DEVELOPERS_BY_SKILL_LEVEL = "SELECT DISTINCT d.developer_id, d.first_name, d.last_name, " +
             "d.gender, d.age, d.company_id, d.salary " +
             "FROM developers d " +

@@ -31,7 +31,7 @@
           <li><a href="/getDevelopers">Get developers</a></li>
           <li><a href="/getDevelopersByProjectForm">Get developers by project</a></li>
           <li><a href="/getDevelopersBySkillLevelForm">Get developers by skill level</a></li>
-          <li><a href="#">Get developer by skill name</a></li>
+          <li><a href="/getDevelopersBySkillNameForm">Get developers by skill name</a></li>
           <li><a href="#">Get salary by project</a></li>
           <li><a href="/updateDeveloperForm">Update developer</a></li>
         </ul>

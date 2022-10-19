@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <title>Get developers by skill level</title>
+        <title>Get developers by skill name</title>
         <style>
             .center {
                 text-align: center;
@@ -25,8 +25,8 @@
     <body>
         <c:import url="${contextPath}/WEB-INF/view/navigationBar.jsp"/>
         <form method="post" class="center">
-          <label for="skillLevel">Please, enter skill_level like Junior, Middle or Senior to view developers:</label><br>
-          <input type="text" id="skillLevel" name="skillLevel"><br>
+          <label for="skillName">Please, enter skill name like Java, C++, C# or JS to view developers:</label><br>
+          <input type="text" id="skillName" name="skillName"><br>
           <button type="submit" class="but">Get</button>
         </form>
     </body>
