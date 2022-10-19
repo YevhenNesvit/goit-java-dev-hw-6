@@ -17,9 +17,13 @@
                 width: 380px;
                 border: 1px solid black;
                 margin: auto;
-                text-align: left;
+                text-align: center;
                 border-collapse: collapse;
-               }
+            }
+            th {
+                padding-left: 38px;
+                padding-right: 38px;
+            }
         </style>
     </head>
     <body>
