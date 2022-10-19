@@ -1,6 +1,7 @@
-package controller;
+package controller.developers;
 
 import config.ServiceConnection;
+import model.dto.DeveloperDto;
 import services.DeveloperService;
 import utils.CheckDevelopers;
 
@@ -10,9 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-@WebServlet(urlPatterns = "/deleteDeveloperForm")
-public class DeleteDeveloperFormController extends HttpServlet {
+@WebServlet(urlPatterns = "/getDeveloperByIdForm")
+public class GetDeveloperByIdFormController extends HttpServlet {
     DeveloperService developerService;
 
     @Override
@@ -23,7 +26,8 @@ public class DeleteDeveloperFormController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/view/developers/deleteDeveloperForm.jsp").forward(req, resp);
+
+        req.getRequestDispatcher("/WEB-INF/view/developers/getDeveloperByIdForm.jsp").forward(req, resp);
     }
 
     @Override
@@ -31,10 +35,12 @@ public class DeleteDeveloperFormController extends HttpServlet {
         CheckDevelopers checkDevelopers = new CheckDevelopers();
 
         try {
+            List<DeveloperDto> developers = new ArrayList<>();
             Integer developerId = Integer.parseInt(req.getParameter("developerId"));
             if (checkDevelopers.IsDeveloperIdExists(developerId)) {
-                developerService.deleteDeveloper(developerId);
-                req.getRequestDispatcher("/WEB-INF/view/developers/developerDeleted.jsp").forward(req, resp);
+                developers.add(developerService.developerById(developerId));
+                req.setAttribute("developers", developers);
+                req.getRequestDispatcher("/WEB-INF/view/developers/developerById.jsp").forward(req, resp);
             } else {
                 req.getRequestDispatcher("/WEB-INF/view/developers/developerIdNotExists.jsp").forward(req, resp);
             }

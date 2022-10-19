@@ -1,4 +1,4 @@
-package controller;
+package controller.developers;
 
 import config.ServiceConnection;
 import model.dto.DeveloperDto;
@@ -13,8 +13,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/getDevelopers")
-public class GetDevelopersController extends HttpServlet {
+@WebServlet(urlPatterns = "/getDevelopersBySkillLevelForm")
+public class GetDevelopersBySkillLevelFormController extends HttpServlet {
     DeveloperService developerService;
 
     @Override
@@ -26,12 +26,19 @@ public class GetDevelopersController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        req.getRequestDispatcher("/WEB-INF/view/developers/getDevelopersBySkillLevelForm.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         try {
-            List<DeveloperDto> developers = developerService.developersList();
-            req.setAttribute("developers", developers );
+            String skillLevel = req.getParameter("skillLevel");
+            List<DeveloperDto> developers = developerService.developersBySkillLevel(skillLevel);
+            req.setAttribute("developers", developers);
+            req.getRequestDispatcher("/WEB-INF/view/developers/developersBySkillLevel.jsp").forward(req, resp);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        req.getRequestDispatcher("/WEB-INF/view/developers/getDevelopers.jsp").forward(req, resp);
     }
 }

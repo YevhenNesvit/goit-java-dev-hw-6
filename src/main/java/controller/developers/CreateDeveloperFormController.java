@@ -1,4 +1,4 @@
-package controller;
+package controller.developers;
 
 import config.ServiceConnection;
 import services.DeveloperService;

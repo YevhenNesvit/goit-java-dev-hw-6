@@ -1,7 +1,6 @@
-package controller;
+package controller.developers;
 
 import config.ServiceConnection;
-import model.dto.DeveloperDto;
 import services.DeveloperService;
 import utils.CheckDevelopers;
 
@@ -11,11 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-@WebServlet(urlPatterns = "/getDeveloperByIdForm")
-public class GetDeveloperByIdFormController extends HttpServlet {
+@WebServlet(urlPatterns = "/updateDeveloperForm")
+public class UpdateDeveloperFormController extends HttpServlet {
     DeveloperService developerService;
 
     @Override
@@ -26,8 +23,7 @@ public class GetDeveloperByIdFormController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        req.getRequestDispatcher("/WEB-INF/view/developers/getDeveloperByIdForm.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/view/developers/updateDeveloperForm.jsp").forward(req, resp);
     }
 
     @Override
@@ -35,12 +31,16 @@ public class GetDeveloperByIdFormController extends HttpServlet {
         CheckDevelopers checkDevelopers = new CheckDevelopers();
 
         try {
-            List<DeveloperDto> developers = new ArrayList<>();
             Integer developerId = Integer.parseInt(req.getParameter("developerId"));
+            String first_name = req.getParameter("firstName");
+            String last_name = req.getParameter("lastName");
+            String gender = req.getParameter("gender");
+            Integer age = Integer.parseInt(req.getParameter("age"));
+            Integer companyId = Integer.parseInt(req.getParameter("companyId"));
+            Integer salary = Integer.parseInt(req.getParameter("salary"));
             if (checkDevelopers.IsDeveloperIdExists(developerId)) {
-                developers.add(developerService.developerById(developerId));
-                req.setAttribute("developers", developers);
-                req.getRequestDispatcher("/WEB-INF/view/developers/developerById.jsp").forward(req, resp);
+                developerService.updateDeveloper(first_name, last_name, gender, age, companyId, salary, developerId);
+                req.getRequestDispatcher("/WEB-INF/view/developers/developerUpdated.jsp").forward(req, resp);
             } else {
                 req.getRequestDispatcher("/WEB-INF/view/developers/developerIdNotExists.jsp").forward(req, resp);
             }

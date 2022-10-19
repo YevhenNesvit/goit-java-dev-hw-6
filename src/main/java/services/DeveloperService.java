@@ -54,7 +54,7 @@ public class DeveloperService {
         this.connector = connector;
     }
 
-    public Integer salaryByProjectId(Integer id) throws SQLException {
+    public DeveloperDto salaryByProjectId(Integer id) throws SQLException {
         ResultSet resultSet = null;
         try (Connection connection = connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(SALARY_BY_PROJECT_ID);
@@ -69,7 +69,7 @@ public class DeveloperService {
         while (resultSet.next()) {
             developer.setSalary(resultSet.getInt("salary"));
         }
-        return developerConverter.from(developer).getSalary();
+        return developerConverter.from(developer);
     }
 
     public List<DeveloperDto> developersByProjectId(Integer id) throws SQLException {

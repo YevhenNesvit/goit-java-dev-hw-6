@@ -7,23 +7,31 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <title>Project id does not exist</title>
+        <title>Salary by project</title>
         <style>
-           .center {
-            text-align: center;
-            margin-top: 11%;
-           }
-          </style>
+            .center {
+                text-align: center;
+                margin-top: 11%;
+            }
+            table {
+                width: 110px;
+                border: 1px solid black;
+                margin: auto;
+                text-align: center;
+                border-collapse: collapse;
+            }
+        </style>
     </head>
     <body>
         <c:import url="${contextPath}/WEB-INF/view/navigationBar.jsp"/>
-        <div class="center">
-          <h2><b>project_id does not exist. Please, retry</b></h2>
-          <p><a href="/deleteProjectForm">Delete project</a></p>
-          <p><a href="/getProjectByIdForm">Get project by id</a></p>
-          <p><a href="/updateProjectForm">Update project</a></p>
-          <p><a href="/getDevelopersByProjectForm">Get developers by project</a></p>
-          <p><a href="/getSalaryByProjectForm">Get salary by project</a></p>
+        <div class ="center">
+          <h2>Salary</h2>
+            <table border="2">
+                <c:forEach var="developer" items="${developers}">
+                  <tr><td>${developer.salary}</td>
+                  </tr>
+                </c:forEach>
+            </table>
         </div>
     </body>
 </html>
