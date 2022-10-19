@@ -3,6 +3,7 @@ package controller;
 import config.ServiceConnection;
 import model.dto.DeveloperDto;
 import services.DeveloperService;
+import utils.CheckProjects;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,12 +31,16 @@ public class GetDevelopersByProjectFormController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        CheckProjects checkProjects = new CheckProjects();
         try {
             Integer projectId = Integer.parseInt(req.getParameter("projectId"));
-            List<DeveloperDto> developers = developerService.developersByProjectId(projectId);
+            if (checkProjects.IsProjectIdExists(projectId)) {
+                List<DeveloperDto> developers = developerService.developersByProjectId(projectId);
                 req.setAttribute("developers", developers);
                 req.getRequestDispatcher("/WEB-INF/view/developers/developersByProject.jsp").forward(req, resp);
+            } else {
+                req.getRequestDispatcher("/WEB-INF/view/projects/projectIdNotExists.jsp").forward(req, resp);
+            }
         } catch (Exception ex) {
             req.getRequestDispatcher("/WEB-INF/view/developers/invalidInputsFormat.jsp").forward(req, resp);
         }
