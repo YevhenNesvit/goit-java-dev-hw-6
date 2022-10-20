@@ -11,17 +11,6 @@ public class DeveloperDto {
     private Integer companyId;
     private Integer salary;
 
-    public DeveloperDto(Integer developerId, String firstName, String lastName, String gender, Integer age,
-                        Integer companyId, Integer salary) {
-        this.developerId = developerId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.age = age;
-        this.companyId = companyId;
-        this.salary = salary;
-    }
-
     public DeveloperDto() {
     }
 

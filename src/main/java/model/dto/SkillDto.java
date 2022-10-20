@@ -7,12 +7,6 @@ public class SkillDto {
     String name;
     String skillLevel;
 
-    public SkillDto(Integer skillId, String name, String skillLevel) {
-        this.skillId = skillId;
-        this.name = name;
-        this.skillLevel = skillLevel;
-    }
-
     public SkillDto() {
 
     }

@@ -11,15 +11,6 @@ public class ProjectDto {
     private Integer cost;
     private Date creationDate;
 
-    public ProjectDto(Integer projectId, String name, Integer customerId, Integer companyId, Integer cost, Date creationDate) {
-        this.projectId = projectId;
-        this.name = name;
-        this.customerId = customerId;
-        this.companyId = companyId;
-        this.cost = cost;
-        this.creationDate = creationDate;
-    }
-
     public ProjectDto() {
 
     }

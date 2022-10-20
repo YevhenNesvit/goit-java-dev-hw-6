@@ -7,12 +7,6 @@ public class CustomerDto {
     private String name;
     private String country;
 
-    public CustomerDto(Integer customerId, String name, String country) {
-        this.customerId = customerId;
-        this.name = name;
-        this.country = country;
-    }
-
     public CustomerDto() {
 
     }

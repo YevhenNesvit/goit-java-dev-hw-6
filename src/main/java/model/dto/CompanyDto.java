@@ -7,12 +7,6 @@ public class CompanyDto {
     String name;
     String country;
 
-    public CompanyDto(Integer companyId, String name, String country) {
-        this.companyId = companyId;
-        this.name = name;
-        this.country = country;
-    }
-
     public CompanyDto() {
     }
 
