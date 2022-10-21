@@ -23,6 +23,7 @@
           <p><a href="/getCompanyByIdForm">Get company by id</a></p>
           <p><a href="/updateCompanyForm">Update company</a></p>
           <p><a href="/createDeveloperForm">Create developer</a></p>
+          <p><a href="/updateDeveloperForm">Update developer</a></p>
           <p><a href="/createProjectForm">Create project</a></p>
         </div>
     </body>
