@@ -2,6 +2,8 @@ package controller.projects;
 
 import config.ServiceConnection;
 import services.ProjectService;
+import utils.CheckCompanies;
+import utils.CheckCustomers;
 import utils.CheckProjects;
 
 import javax.servlet.ServletException;
@@ -30,6 +32,8 @@ public class CreateProjectFormController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         CheckProjects checkProjects = new CheckProjects();
+        CheckCustomers checkCustomers = new CheckCustomers();
+        CheckCompanies checkCompanies = new CheckCompanies();
 
         try {
             Integer projectId = Integer.parseInt(req.getParameter("projectId"));
@@ -40,9 +44,15 @@ public class CreateProjectFormController extends HttpServlet {
             Date creationDate = java.sql.Date.valueOf(req.getParameter("creationDate"));
             if (checkProjects.IsProjectIdExists(projectId)) {
                 req.getRequestDispatcher("/WEB-INF/view/projects/projectIdAlreadyExists.jsp").forward(req, resp);
+            } else if (checkCustomers.IsCustomerIdExists(customerId)) {
+                if (checkCompanies.IsCompanyIdExists(companyId)) {
+                    projectService.createProject(projectId, name, customerId, companyId, cost, creationDate);
+                    req.getRequestDispatcher("/WEB-INF/view/projects/projectCreated.jsp").forward(req, resp);
+                } else {
+                    req.getRequestDispatcher("/WEB-INF/view/companies/companyIdNotExists.jsp").forward(req, resp);
+                }
             } else {
-                projectService.createProject(projectId, name, customerId, companyId, cost, creationDate);
-                req.getRequestDispatcher("/WEB-INF/view/projects/projectCreated.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/view/customers/customerIdNotExists.jsp").forward(req, resp);
             }
         } catch (Exception ex) {
             req.getRequestDispatcher("/WEB-INF/view/projects/invalidInputsFormat.jsp").forward(req, resp);
