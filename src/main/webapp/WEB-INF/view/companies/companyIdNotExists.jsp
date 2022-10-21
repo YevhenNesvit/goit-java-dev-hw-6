@@ -25,6 +25,7 @@
           <p><a href="/createDeveloperForm">Create developer</a></p>
           <p><a href="/updateDeveloperForm">Update developer</a></p>
           <p><a href="/createProjectForm">Create project</a></p>
+          <p><a href="/updateProjectForm">Update project</a></p>
         </div>
     </body>
 </html>

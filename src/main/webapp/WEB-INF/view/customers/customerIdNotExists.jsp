@@ -23,6 +23,7 @@
           <p><a href="/getCustomerByIdForm">Get customer by id</a></p>
           <p><a href="/updateCustomerForm">Update customer</a></p>
           <p><a href="/createProjectForm">Create project</a></p>
+          <p><a href="/updateProjectForm">Update project</a></p>
         </div>
     </body>
 </html>
