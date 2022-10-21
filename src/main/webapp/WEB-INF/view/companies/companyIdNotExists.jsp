@@ -22,6 +22,7 @@
           <p><a href="/deleteCompanyForm">Delete company</a></p>
           <p><a href="/getCompanyByIdForm">Get company by id</a></p>
           <p><a href="/updateCompanyForm">Update company</a></p>
+          <p><a href="/createDeveloperForm">Create developer</a></p>
         </div>
     </body>
 </html>
